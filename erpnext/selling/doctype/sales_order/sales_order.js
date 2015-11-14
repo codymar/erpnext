@@ -56,15 +56,13 @@ erpnext.selling.SalesOrderController = erpnext.selling.SellingController.extend(
 					cur_frm.add_custom_button(__('Payment'), cur_frm.cscript.make_bank_entry);
 				}
 
-				if (this.frm.has_perm("submit")) {
-					// stop
-					if(flt(doc.per_delivered, 2) < 100 || flt(doc.per_billed) < 100) {
-							cur_frm.add_custom_button(__('Stop'), this.stop_sales_order)
-						}
+				// stop
+				if(flt(doc.per_delivered, 2) < 100 || flt(doc.per_billed) < 100) {
+						cur_frm.add_custom_button(__('Stop'), this.stop_sales_order)
+					}
 
 
-					cur_frm.add_custom_button(__('Close'), this.close_sales_order)
-				}
+				cur_frm.add_custom_button(__('Close'), this.close_sales_order)
 
 				// maintenance
 				if(flt(doc.per_delivered, 2) < 100 && ["Sales", "Shopping Cart"].indexOf(doc.order_type)===-1) {
@@ -84,10 +82,8 @@ erpnext.selling.SalesOrderController = erpnext.selling.SellingController.extend(
 
 
 			} else {
-				if (this.frm.has_perm("submit")) {
-					// un-stop
-					cur_frm.add_custom_button(__('Re-open'), cur_frm.cscript['Unstop Sales Order']);
-				}
+				// un-stop
+				cur_frm.add_custom_button(__('Re-open'), cur_frm.cscript['Unstop Sales Order']);
 			}
 		}
 
